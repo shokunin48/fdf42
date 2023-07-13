@@ -6,7 +6,7 @@
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 22:28:03 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/13 17:45:28 by ibellash         ###   ########.fr       */
+/*   Updated: 2023/07/13 19:51:29 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	init_vars(t_fdf *data)
 	data->line_length = 0;
 	data->endian = 0;
 	data->zoom_height = 1;
-	data->win_width = 2000;
-	data->win_height = 1000;
+	data->win_width = 1000;
+	data->win_height = 500;
 	data->angle = 0.9;
 	if (data->win_width > data->win_height)
 		data->constant = data->win_width / data->win_height;

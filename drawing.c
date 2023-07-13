@@ -6,7 +6,7 @@
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 15:57:34 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/13 17:17:35 by ibellash         ###   ########.fr       */
+/*   Updated: 2023/07/13 19:41:54 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	drawing_line(t_fdf *data)
 	max = max_nmb(mod(x_step), mod(y_step));
 	x_step /= max;
 	y_step /= max;
-	while ((int)(data->x1 - x) || (int)(data->y1 - y))
+	while ((int)(x - data->x1) || (int)(y - data->y1))
 	{
 		my_mlx_pixel_put(data, data->begin_point_x + x,
 			data->begin_point_y + y, data->color);

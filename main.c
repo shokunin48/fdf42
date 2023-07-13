@@ -6,7 +6,7 @@
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:14:55 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/13 18:05:07 by ibellash         ###   ########.fr       */
+/*   Updated: 2023/07/13 19:39:04 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void	free_2d_matrix(int **matrix, t_fdf *data)
 
 int	escape(t_fdf *data)
 {
-	mlx_destroy_window(data->win_ptr, data->mlx_ptr);
 	mlx_destroy_image(data->mlx_ptr, data->img);
 	if (data->matrix)
 		free_2d_matrix(data->matrix, data);
-	free(data);
+	if (data)
+		free(data);
 	exit(1);
 }
 
@@ -53,7 +53,7 @@ int	main(int argc, char **argv)
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 			&data->line_length, &data->endian);
 	drawing_map(data);
-	mlx_key_hook(data->win_ptr, keyboard, data);
+	mlx_hook(data->win_ptr, 2, 0, keyboard, data);
 	mlx_hook(data->win_ptr, 17, 0, escape, data);
 	mlx_loop(data->mlx_ptr);
 	return (0);

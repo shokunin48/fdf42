@@ -6,7 +6,7 @@
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 19:04:26 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/13 15:59:51 by ibellash         ###   ########.fr       */
+/*   Updated: 2023/07/13 19:30:13 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,16 @@ int	get_height(char *file_name)
 {
 	int		fd;
 	int		height;
+	char	*line;
 
 	fd = open(file_name, O_RDONLY, 0);
 	height = 0;
-	while (get_next_line(fd))
+	line = get_next_line(fd);
+	while (line)
 	{
+		free(line);
 		height++;
+		line = get_next_line(fd);
 	}
 	close (fd);
 	return (height);

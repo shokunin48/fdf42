@@ -6,45 +6,76 @@
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 17:37:45 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/13 17:26:25 by ibellash         ###   ########.fr       */
+/*   Updated: 2023/07/13 19:48:55 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	keyboard(int botton, t_fdf *data)
+void	shift(int button, t_fdf *data)
 {
-	if (botton == 126) // arrows
+	if (button == 126)
 		data->shift_y -= 10;
-	if (botton == 125)
+	if (button == 125)
 		data->shift_y += 10;
-	if (botton == 124)
+	if (button == 124)
 		data->shift_x += 10;
-	if (botton == 123)
+	if (button == 123)
 		data->shift_x -= 10;
-	if (botton == 12) // q , e
-		data->zoom += 10;
-	if (botton == 14)
-		data->zoom -= 10;
-	if (botton == 6) // z , x
-		data->zoom_height += 0.1;
-	if (botton == 7)
-		data->zoom_height -= 0.1;
-	if (botton == 15) // r , t
-		data->z_angle -= 0.1;
-	if (botton == 17)
-		data->z_angle += 0.1;
-	if (botton == 3) // f , g
-		data->x_angle -= 0.1;
-	if (botton == 5)
-		data->x_angle += 0.1;
-	if (botton == 9) // v , b
-		data->y_angle -= 0.1;
-	if (botton == 11)
-		data->y_angle += 0.1;
-	if (botton == 53)
-		escape(data);
-	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	drawing_map(data);
+}
+
+void	zoom(int button, t_fdf *data)
+{
+	if (button == 12)
+		data->zoom += 1;
+	if (button == 14)
+	{
+		if (data->zoom - 1 < 0)
+			return ;
+		data->zoom -= 1;
+	}
+	drawing_map(data);
+}
+
+void	zoom_height_change(int button, t_fdf *data)
+{
+	if (button == 6)
+		data->zoom_height += 0.1;
+	if (button == 7)
+		data->zoom_height -= 0.1;
+	drawing_map(data);
+}
+
+void	change_angle(int button, t_fdf *data)
+{
+	if (button == 15)
+		data->z_angle -= 0.05;
+	if (button == 17)
+		data->z_angle += 0.05;
+	if (button == 3)
+		data->x_angle -= 0.05;
+	if (button == 5)
+		data->x_angle += 0.05;
+	if (button == 9)
+		data->y_angle -= 0.05;
+	if (button == 11)
+		data->y_angle += 0.05;
+	drawing_map(data);
+}
+
+int	keyboard(int button, t_fdf *data)
+{
+	if (button == 126 || button == 125 || button == 124 || button == 123)
+		shift(button, data);
+	if (button == 12 || button == 14)
+		zoom(button, data);
+	if (button == 6 || button == 7)
+		zoom_height_change(button, data);
+	if (button == 15 || button == 17 || button == 3
+		|| button == 5 || button == 9 || button == 11)
+		change_angle(button, data);
+	if (button == 53)
+		escape(data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 20:32:25 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/13 17:06:03 by ibellash         ###   ########.fr       */
+/*   Updated: 2023/07/13 19:52:23 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	my_mlx_pixel_put(t_fdf *data, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x < data->win_width && y <= data->win_height
+	if (x < data->win_width && y < data->win_height
 		&& x > 0 && y > 0)
 	{
 		dst = data->addr + (y * data->line_length + x
