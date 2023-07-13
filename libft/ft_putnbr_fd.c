@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/12 20:32:25 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/13 15:17:46 by ibellash         ###   ########.fr       */
+/*   Created: 2023/01/11 15:15:01 by ibellash          #+#    #+#             */
+/*   Updated: 2023/02/01 11:55:05 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-void	fill(int x, int y, t_fdf *data)
+void	ft_putnbr_fd(int n, int fd)
 {
-	data->x = x;
-	data->y = y;
-}
-
-void	color_check(t_fdf *data)
-{
-	data->z = data->matrix[(int)data->y][(int)data->x];
-	data->z1 = data->matrix[(int)data->y1][(int)data->x1];
-	data->color = get_color(data->z);
-	data->color = get_color(data->z1);
-}
-
-int	error(char *msg)
-{
-	write(2, msg, ft_strlen(msg));
-	exit(0);
-	return (1);
+	if (n == -2147483648)
+	{
+		ft_putchar_fd('-', fd);
+		ft_putchar_fd('2', fd);
+		n = 147483648;
+	}
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		n = n * -1;
+	}
+	if (n > 9)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
+	}
+	else
+		ft_putchar_fd(n + '0', fd);
 }

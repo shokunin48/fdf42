@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/12 20:32:25 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/13 15:17:46 by ibellash         ###   ########.fr       */
+/*   Created: 2023/01/05 20:25:50 by ibellash          #+#    #+#             */
+/*   Updated: 2023/02/01 16:11:50 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-void	fill(int x, int y, t_fdf *data)
+char	*ft_strdup(const char *str)
 {
-	data->x = x;
-	data->y = y;
+	int		i;
+	char	*dup;
+
+	i = 0;
+	dup = malloc(ft_strlen(str) + 1);
+	if (!dup)
+		return (NULL);
+	while (str[i] != '\0')
+	{
+		dup[i] = str[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
 }
 
-void	color_check(t_fdf *data)
-{
-	data->z = data->matrix[(int)data->y][(int)data->x];
-	data->z1 = data->matrix[(int)data->y1][(int)data->x1];
-	data->color = get_color(data->z);
-	data->color = get_color(data->z1);
-}
-
-int	error(char *msg)
-{
-	write(2, msg, ft_strlen(msg));
-	exit(0);
-	return (1);
-}
+// int	main()
+// {
+// 	char *str = "kskhcsdjcdsc";
+// 	puts(ft_strdup(str));
+// }

@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/12 20:32:25 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/13 15:17:46 by ibellash         ###   ########.fr       */
+/*   Created: 2023/01/11 15:11:32 by ibellash          #+#    #+#             */
+/*   Updated: 2023/01/31 15:49:44 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-void	fill(int x, int y, t_fdf *data)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	data->x = x;
-	data->y = y;
-}
+	size_t	i;
+	char	*newstr;
 
-void	color_check(t_fdf *data)
-{
-	data->z = data->matrix[(int)data->y][(int)data->x];
-	data->z1 = data->matrix[(int)data->y1][(int)data->x1];
-	data->color = get_color(data->z);
-	data->color = get_color(data->z1);
-}
-
-int	error(char *msg)
-{
-	write(2, msg, ft_strlen(msg));
-	exit(0);
-	return (1);
+	if (!s || !f)
+		return (NULL);
+	newstr = (char *)malloc(sizeof(char) * (ft_strlen((char *)s) + 1));
+	if (!newstr)
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		newstr[i] = f(i, s[i]);
+		i++;
+	}
+	newstr[i] = 0;
+	return (newstr);
 }

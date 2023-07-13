@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/12 20:32:25 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/13 15:17:46 by ibellash         ###   ########.fr       */
+/*   Created: 2023/01/29 13:25:10 by ibellash          #+#    #+#             */
+/*   Updated: 2023/01/31 18:33:56 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-void	fill(int x, int y, t_fdf *data)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	data->x = x;
-	data->y = y;
-}
+	t_list	*newlst;
+	t_list	*newelem;
 
-void	color_check(t_fdf *data)
-{
-	data->z = data->matrix[(int)data->y][(int)data->x];
-	data->z1 = data->matrix[(int)data->y1][(int)data->x1];
-	data->color = get_color(data->z);
-	data->color = get_color(data->z1);
-}
-
-int	error(char *msg)
-{
-	write(2, msg, ft_strlen(msg));
-	exit(0);
-	return (1);
+	if (!lst || !f)
+		return (NULL);
+	newlst = NULL;
+	while (lst)
+	{
+		newelem = ft_lstnew((*f)(lst->content));
+		if (!newelem)
+		{
+			del(newelem);
+		}
+		ft_lstadd_back(&newlst, newelem);
+		lst = lst->next;
+	}
+	return (newlst);
 }

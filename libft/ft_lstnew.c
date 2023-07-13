@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/12 20:32:25 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/13 15:17:46 by ibellash         ###   ########.fr       */
+/*   Created: 2023/01/29 11:43:14 by ibellash          #+#    #+#             */
+/*   Updated: 2023/02/27 19:26:12 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-void	fill(int x, int y, t_fdf *data)
+t_list	*ft_lstnew(void *content)
 {
-	data->x = x;
-	data->y = y;
-}
+	t_list	*new;
 
-void	color_check(t_fdf *data)
-{
-	data->z = data->matrix[(int)data->y][(int)data->x];
-	data->z1 = data->matrix[(int)data->y1][(int)data->x1];
-	data->color = get_color(data->z);
-	data->color = get_color(data->z1);
-}
-
-int	error(char *msg)
-{
-	write(2, msg, ft_strlen(msg));
-	exit(0);
-	return (1);
+	new = malloc(sizeof(*new));
+	if (!new)
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	return (new);
 }

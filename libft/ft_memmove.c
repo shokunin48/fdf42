@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/12 20:32:25 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/13 15:17:46 by ibellash         ###   ########.fr       */
+/*   Created: 2022/12/20 22:37:01 by ibellash          #+#    #+#             */
+/*   Updated: 2023/01/29 21:13:15 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-void	fill(int x, int y, t_fdf *data)
+void	*ft_memmove(void *destptr, const void *srcptr, size_t num)
 {
-	data->x = x;
-	data->y = y;
-}
-
-void	color_check(t_fdf *data)
-{
-	data->z = data->matrix[(int)data->y][(int)data->x];
-	data->z1 = data->matrix[(int)data->y1][(int)data->x1];
-	data->color = get_color(data->z);
-	data->color = get_color(data->z1);
-}
-
-int	error(char *msg)
-{
-	write(2, msg, ft_strlen(msg));
-	exit(0);
-	return (1);
+	if (!destptr && !srcptr)
+		return (0);
+	if ((size_t)destptr - (size_t)srcptr < num)
+	{
+		while (num > 0)
+		{
+			((char *)destptr)[num - 1] = ((char *)srcptr)[num - 1];
+			num--;
+		}
+	}
+	else
+	{
+		ft_memcpy(destptr, srcptr, num);
+	}
+	return (destptr);
 }

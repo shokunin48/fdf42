@@ -6,7 +6,7 @@
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:14:43 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/12 21:27:56 by ibellash         ###   ########.fr       */
+/*   Updated: 2023/07/13 15:17:39 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ void	shift_pixel_y(float *y, float *y1, t_fdf *data);
 void	rotate_y(float *x, float *z, double beta);
 void	rotate_z(float *x, float *y, double gamma);
 void	rotate_x(float *y, float *z, double alpha);
+int		error(char *msg);
 
 #endif

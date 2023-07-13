@@ -6,14 +6,31 @@
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:14:55 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/12 20:28:39 by ibellash         ###   ########.fr       */
+/*   Updated: 2023/07/13 15:21:30 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+void	free_2d_matrix(int **matrix, t_fdf *data)
+{
+	int	y;
+
+	y = 0;
+	while (y < data->height)
+	{
+		free(matrix[y]);
+		y++;
+	}
+	free(matrix);
+}
+
 int	escape(t_fdf *data)
 {
+	mlx_destroy_window(data->win_ptr, data->mlx_ptr);
+	if (data->matrix)
+		free_2d_matrix(data->matrix, data);
+	free(data);
 	exit(1);
 }
 
@@ -21,7 +38,11 @@ int	main(int argc, char **argv)
 {
 	t_fdf	*data;
 
+	if (argc != 2)
+		error("!!Invalid number of arguments!!\n");
 	data = (t_fdf *) malloc(sizeof(t_fdf));
+	if (!data)
+		return (0);
 	read_file(argv[1], data);
 	init_vars(data);
 	data->mlx_ptr = mlx_init();

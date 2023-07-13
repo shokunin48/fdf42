@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/12 20:32:25 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/13 15:17:46 by ibellash         ###   ########.fr       */
+/*   Created: 2022/12/20 22:30:08 by ibellash          #+#    #+#             */
+/*   Updated: 2023/02/01 14:00:20 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-void	fill(int x, int y, t_fdf *data)
+void	*ft_memcpy(void *destptr, const void *srcptr, size_t num)
 {
-	data->x = x;
-	data->y = y;
-}
+	int		i;
+	char	*src;
+	char	*dest;
 
-void	color_check(t_fdf *data)
-{
-	data->z = data->matrix[(int)data->y][(int)data->x];
-	data->z1 = data->matrix[(int)data->y1][(int)data->x1];
-	data->color = get_color(data->z);
-	data->color = get_color(data->z1);
-}
-
-int	error(char *msg)
-{
-	write(2, msg, ft_strlen(msg));
-	exit(0);
-	return (1);
+	i = 0;
+	if (!destptr && !srcptr)
+		return (NULL);
+	src = (char *)srcptr;
+	dest = (char *)destptr;
+	while (num-- > 0)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	return (dest);
 }
