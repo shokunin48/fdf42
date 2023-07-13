@@ -6,7 +6,7 @@
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 15:57:34 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/12 21:27:44 by ibellash         ###   ########.fr       */
+/*   Updated: 2023/07/13 17:17:35 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	drawing_line(t_fdf *data)
 	y_step /= max;
 	while ((int)(data->x1 - x) || (int)(data->y1 - y))
 	{
-		mlx_pixel_put(data->mlx_ptr, data->win_ptr, data->begin_point_x + x,
+		my_mlx_pixel_put(data, data->begin_point_x + x,
 			data->begin_point_y + y, data->color);
 		x += x_step;
 		y += y_step;
@@ -53,6 +53,12 @@ void	drawing_map(t_fdf *data)
 	int	x;
 	int	y;
 
+	if (data->img)
+	{
+		mlx_destroy_image(data->mlx_ptr, data->img);
+		data->img = mlx_new_image(data->mlx_ptr, data->win_width,
+				data->win_height);
+	}
 	y = 0;
 	while (y < data->height)
 	{
@@ -67,4 +73,5 @@ void	drawing_map(t_fdf *data)
 		}
 		y++;
 	}
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
 }

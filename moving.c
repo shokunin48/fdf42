@@ -6,7 +6,7 @@
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 17:37:45 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/12 21:27:03 by ibellash         ###   ########.fr       */
+/*   Updated: 2023/07/13 17:26:25 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	keyboard(int botton, t_fdf *data)
 	if (botton == 11)
 		data->y_angle += 0.1;
 	if (botton == 53)
-		exit (1);
+		escape(data);
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	drawing_map(data);
 	return (0);

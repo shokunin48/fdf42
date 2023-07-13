@@ -6,11 +6,11 @@
 #    By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/27 17:43:42 by ibellash          #+#    #+#              #
-#    Updated: 2023/03/15 16:55:18 by ibellash         ###   ########.fr        #
+#    Updated: 2023/07/13 15:57:18 by ibellash         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = ft_memset.c		\
+SRCS = 	ft_memset.c		\
 		ft_bzero.c		\
 		ft_memcpy.c		\
 		ft_memmove.c 	\

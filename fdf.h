@@ -6,13 +6,12 @@
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:14:43 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/13 15:17:39 by ibellash         ###   ########.fr       */
+/*   Updated: 2023/07/13 17:39:08 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# include "ft_printf/ft_printf.h"
 # include "libft/libft.h"
 # include "mlx/mlx.h"
 # include <unistd.h>
@@ -46,6 +45,12 @@ typedef struct s_fdf
 	double	x_angle;
 	void	*mlx_ptr;
 	void	*win_ptr;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		constant;
 }	t_fdf;
 
 void	read_file(char *file_name, t_fdf *data);
@@ -69,5 +74,7 @@ void	rotate_y(float *x, float *z, double beta);
 void	rotate_z(float *x, float *y, double gamma);
 void	rotate_x(float *y, float *z, double alpha);
 int		error(char *msg);
+void	my_mlx_pixel_put(t_fdf *data, int x, int y, int color);
+int		escape(t_fdf *data);
 
 #endif

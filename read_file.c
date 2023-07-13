@@ -6,13 +6,13 @@
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 19:04:26 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/10 22:35:40 by ibellash         ###   ########.fr       */
+/*   Updated: 2023/07/13 15:59:51 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	nmbr_words(char *s, char c)
+int	nmb_words(char *s, char c)
 {
 	int		reset;
 	size_t	i;
@@ -57,7 +57,7 @@ int	get_width(char *file_name)
 	fd = open(file_name, O_RDONLY, 0);
 	width = 0;
 	line = get_next_line(fd);
-	width = nmbr_words(line, ' ');
+	width = nmb_words(line, ' ');
 	free(line);
 	close (fd);
 	return (width);
