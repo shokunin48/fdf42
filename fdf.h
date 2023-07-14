@@ -6,7 +6,7 @@
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:14:43 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/13 18:23:16 by ibellash         ###   ########.fr       */
+/*   Updated: 2023/07/14 20:03:14 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_fdf
 	int		width;
 	int		height;
 	int		**matrix;
+	int		**color_matrix;
 	int		zoom;
 	int		color;
 	int		shift_x;
@@ -33,12 +34,12 @@ typedef struct s_fdf
 	int		begin_point_x;
 	int		begin_point_y;
 	float	angle;
-	float	x;
-	float	y;
-	float	z;
-	float	x1;
-	float	y1;
-	float	z1;
+	int		x;
+	int		y;
+	int		z;
+	int		x1;
+	int		y1;
+	int		z1;
 	double	zoom_height;
 	double	z_angle;
 	double	y_angle;
@@ -60,21 +61,21 @@ int		keyboard(int botton, t_fdf *data);
 void	init_vars(t_fdf *data);
 int		key_hook(int keycode, t_fdf *data);
 float	max_nmb(float a, float b);
-void	isometric(float *x, float *y, int z, t_fdf *data);
 float	mod(float a);
-void	zoom_pixels(t_fdf *data);
-int		get_color(int z);
 void	fill(int x, int y, t_fdf *data);
-void	color_check(t_fdf *data);
-void	iso_x(float x, float y, t_fdf *data);
-void	iso_y(float x, float y, t_fdf *data);
-void	shift_pixel_x(float *x, float *x1, t_fdf *data);
-void	shift_pixel_y(float *y, float *y1, t_fdf *data);
-void	rotate_y(float *x, float *z, double beta);
-void	rotate_z(float *x, float *y, double gamma);
-void	rotate_x(float *y, float *z, double alpha);
+void	z_put(t_fdf *data);
+void	iso_x(int x, int y, t_fdf *data);
+void	iso_y(int x, int y, t_fdf *data);
+void	rotate_y(int *x, int *z, double beta);
+void	rotate_z(int *x, int *y, double gamma);
+void	rotate_x(int *y, int *z, double alpha);
 int		error(char *msg);
 void	my_mlx_pixel_put(t_fdf *data, int x, int y, int color);
 int		escape(t_fdf *data);
+void	rotations(t_fdf *data);
+void	zoom_add(t_fdf *data);
+void	put_color(t_fdf *data);
+int		**malloc_matrix(int height, int width);
+int		get_color(char *temp);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/06 14:15:08 by ibellash          #+#    #+#              #
-#    Updated: 2023/07/13 18:07:29 by ibellash         ###   ########.fr        #
+#    Updated: 2023/07/14 19:47:43 by ibellash         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ SRCS =	main.c \
 		moving.c \
 		rotations.c \
 		utils.c \
-		utils2.c 
+		utils2.c \
+		color.c
 
 NAME = fdf
 

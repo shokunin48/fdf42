@@ -6,7 +6,7 @@
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 19:04:26 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/13 19:30:13 by ibellash         ###   ########.fr       */
+/*   Updated: 2023/07/14 21:54:12 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	get_height(char *file_name)
 	char	*line;
 
 	fd = open(file_name, O_RDONLY, 0);
+	if (fd == -1)
+		error("Error while trying to read file.\n");
 	height = 0;
 	line = get_next_line(fd);
 	while (line)
@@ -59,6 +61,8 @@ int	get_width(char *file_name)
 	int		width;
 
 	fd = open(file_name, O_RDONLY, 0);
+	if (fd == -1)
+		error("Error while trying to read file.\n");
 	width = 0;
 	line = get_next_line(fd);
 	width = nmb_words(line, ' ');
@@ -67,20 +71,21 @@ int	get_width(char *file_name)
 	return (width);
 }
 
-void	fill_matrix(int *matrix_line, char *line)
+void	fill_two_matrix(int *matrix_line, int *color_matrix_line, char *line)
 {
-	char	**nmbs;
+	char	**str;
 	int		i;
 
-	nmbs = ft_split(line, ' ');
+	str = ft_split(line, ' ');
 	i = 0;
-	while (nmbs[i])
+	while (str[i])
 	{
-		matrix_line[i] = ft_atoi(nmbs[i]);
-		free(nmbs[i]);
+		color_matrix_line[i] = get_color(str[i]);
+		matrix_line[i] = ft_atoi(str[i]);
+		free(str[i]);
 		i++;
 	}
-	free(nmbs);
+	free(str);
 }
 
 void	read_file(char *file_name, t_fdf *data)
@@ -91,16 +96,16 @@ void	read_file(char *file_name, t_fdf *data)
 
 	data->height = get_height(file_name);
 	data->width = get_width(file_name);
-	data->matrix = (int **)malloc(sizeof(int *) * (data->height + 1));
-	i = 0;
-	while (i < data->height)
-		data->matrix[i++] = (int *)malloc(sizeof(int) * (data->width + 1));
+	data->matrix = malloc_matrix(data->height, data->width);
+	data->color_matrix = malloc_matrix(data->height, data->width);
 	fd = open(file_name, O_RDONLY, 0);
+	if (fd == -1)
+		error("Error while trying to read file.\n");
 	i = 0;
 	while (i < data->height)
 	{
 		line = get_next_line(fd);
-		fill_matrix(data->matrix[i], line);
+		fill_two_matrix(data->matrix[i], data->color_matrix[i], line);
 		i++;
 		free(line);
 	}

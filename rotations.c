@@ -6,13 +6,13 @@
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 21:06:06 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/12 21:11:44 by ibellash         ###   ########.fr       */
+/*   Updated: 2023/07/14 19:45:50 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	rotate_y(float *x, float *z, double beta)
+void	rotate_y(int *x, int *z, double beta)
 {
 	float	previous_x;
 
@@ -21,7 +21,7 @@ void	rotate_y(float *x, float *z, double beta)
 	*z = -previous_x * sin(beta) + *z * cos(beta);
 }
 
-void	rotate_z(float *x, float *y, double gamma)
+void	rotate_z(int *x, int *y, double gamma)
 {
 	float	previous_x;
 	float	previous_y;
@@ -32,7 +32,7 @@ void	rotate_z(float *x, float *y, double gamma)
 	*y = previous_x * sin(gamma) + previous_y * cos(gamma);
 }
 
-void	rotate_x(float *y, float *z, double alpha)
+void	rotate_x(int *y, int *z, double alpha)
 {
 	float	previous_y;
 

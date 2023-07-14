@@ -6,7 +6,7 @@
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:47:57 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/12 21:16:54 by ibellash         ###   ########.fr       */
+/*   Updated: 2023/07/14 21:52:18 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,6 @@ float	max_nmb(float a, float b)
 	return (b);
 }
 
-void	isometric(float *x, float *y, int z, t_fdf *data)
-{
-	*x = (*x - *y) * cos(data->angle);
-	*y = (*x + *y) * sin(data->angle) - z;
-}
-
 float	mod(float a)
 {
 	if (a < 0)
@@ -32,7 +26,7 @@ float	mod(float a)
 	return (a);
 }
 
-void	zoom_pixels(t_fdf *data)
+void	zoom_add(t_fdf *data)
 {
 	data->x *= data->zoom;
 	data->y *= data->zoom;
@@ -42,11 +36,15 @@ void	zoom_pixels(t_fdf *data)
 	data->z1 *= data->zoom_height;
 }
 
-int	get_color(int z)
+int	**malloc_matrix(int height, int width)
 {
-	if (z > 0)
-		return (0xffd700);
-	else if (z < 0)
-		return (0x00ffff);
-	return (0xffffff);
+	int	i;
+	int	**data;
+
+	i = 0;
+	data = (int **)malloc(sizeof(int *) * (height + 1));
+	i = 0;
+	while (i < height)
+		data[i++] = (int *)malloc(sizeof(int) * (width + 1));
+	return (data);
 }

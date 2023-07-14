@@ -6,23 +6,11 @@
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 15:57:34 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/13 19:41:54 by ibellash         ###   ########.fr       */
+/*   Updated: 2023/07/14 20:10:21 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	shift_pixel_x(float *x, float *x1, t_fdf *data)
-{
-	*x += data->shift_x;
-	*x1 += data->shift_x;
-}
-
-void	shift_pixel_y(float *y, float *y1, t_fdf *data)
-{
-	*y += data->shift_y;
-	*y1 += data->shift_y;
-}
 
 void	drawing_line(t_fdf *data)
 {
@@ -32,14 +20,14 @@ void	drawing_line(t_fdf *data)
 	float	x;
 	float	y;
 
-	x = data->x;
-	y = data->y;
+	x = (float)data->x;
+	y = (float)data->y;
 	x_step = (int)data->x1 - x;
 	y_step = (int)data->y1 - y;
 	max = max_nmb(mod(x_step), mod(y_step));
 	x_step /= max;
 	y_step /= max;
-	while ((int)(x - data->x1) || (int)(y - data->y1))
+	while ((int)(data->x1 - x) || (int)(data->y1 - y))
 	{
 		my_mlx_pixel_put(data, data->begin_point_x + x,
 			data->begin_point_y + y, data->color);
