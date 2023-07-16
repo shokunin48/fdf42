@@ -6,7 +6,7 @@
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:47:57 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/14 21:52:18 by ibellash         ###   ########.fr       */
+/*   Updated: 2023/07/14 22:07:22 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	**malloc_matrix(int height, int width)
 	int	i;
 	int	**data;
 
-	i = 0;
 	data = (int **)malloc(sizeof(int *) * (height + 1));
 	i = 0;
 	while (i < height)

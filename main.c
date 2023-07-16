@@ -6,7 +6,7 @@
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 14:14:55 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/14 21:55:07 by ibellash         ###   ########.fr       */
+/*   Updated: 2023/07/14 22:14:51 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	escape(t_fdf *data)
 	mlx_destroy_image(data->mlx_ptr, data->img);
 	if (data->matrix)
 		free_2d_matrix(data->matrix, data);
+	if (data->color_matrix)
+		free_2d_matrix(data->color_matrix, data);
 	if (data)
 		free(data);
 	exit(1);

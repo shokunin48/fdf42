@@ -6,7 +6,7 @@
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 19:30:45 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/14 19:50:55 by ibellash         ###   ########.fr       */
+/*   Updated: 2023/07/16 15:16:50 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,18 @@
 
 void	check_color(t_fdf *data)
 {
-	if (data->z == 2 || data->z1 == 2)
+	if (data->z >= 2 || data->z1 >= 2)
 		data->color = 0x0000FF;
-	else if (data->z == 1 || data->z1 == 1)
-		data->color = 0x00FF00;
-	else if (data->z == 3 || data->z1 == 3)
-		data->color = 0x00FF00;
-	else if (data->z > 5 || data->z1 > 5)
-		data->color = 0x00FFFF;
+	else if (data->z >= 1 || data->z1 >= 1)
+		data->color = 0xFF9900;
+	else if (data->z >= 3 || data->z1 >= 3)
+		data->color = 0xA64D79;
+	else if (data->z >= 5 || data->z1 >= 5)
+		data->color = 0xFFFF00;
+	else if (data->z >= 10 || data->z1 >= 10)
+		data->color = 0xFF9900;
+	else if (data->z <= 0 || data->z1 <= 0)
+		data->color = 0x674EA7;
 	else
 		data->color = 0x00FFFF;
 }

@@ -6,7 +6,7 @@
 /*   By: ibellash <ibellash@student.42wolfsburg.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 17:37:45 by ibellash          #+#    #+#             */
-/*   Updated: 2023/07/14 22:00:16 by ibellash         ###   ########.fr       */
+/*   Updated: 2023/07/16 15:05:21 by ibellash         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	zoom(int button, t_fdf *data)
 		data->zoom += 1;
 	if (button == 14)
 	{
-		if (data->zoom - 2 < 0)
+		if (data->zoom - 1 < 0)
 			return ;
 		data->zoom -= 1;
 	}
@@ -50,17 +50,17 @@ void	zoom_height_change(int button, t_fdf *data)
 void	change_angle(int button, t_fdf *data)
 {
 	if (button == 15)
-		data->z_angle -= 0.7;
+		data->z_angle -= 0.5;
 	if (button == 17)
-		data->z_angle += 0.7;
+		data->z_angle += 0.5;
 	if (button == 3)
-		data->x_angle -= 0.7;
+		data->x_angle -= 0.5;
 	if (button == 5)
-		data->x_angle += 0.7;
+		data->x_angle += 0.5;
 	if (button == 9)
-		data->y_angle -= 0.7;
+		data->y_angle -= 0.5;
 	if (button == 11)
-		data->y_angle += 0.7;
+		data->y_angle += 0.5;
 	drawing_map(data);
 }
 
